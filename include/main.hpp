@@ -5,6 +5,4 @@
 #include <iostream>
 #include <filesystem>
 
-// classes
-
 #endif // MAIN_HPP

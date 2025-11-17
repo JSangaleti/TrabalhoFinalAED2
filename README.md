@@ -18,7 +18,7 @@ make
 
 ### Explicação da organização das pastas
 * `bin/` **(não modificar!)**: local em que o arquivo executável fica localizado;
-* `build/` **(não modificar!)**: pasta em que ficam os arquivos `.o` resultados da compilação dos arquivos `.cpp`;
+* `build/` **(não modificar!)**: pasta em que ficam os arquivos `.o`, resultados da compilação dos arquivos `.cpp`;
 * `data/`  **(não modificar!)**: pasta em que são armazenados os arquivos de texto processados;
 * `files/`  **(não modificar!)**: pasta em que estão localizados os arquivos de texto originais;
 * `include/`: arquivos-cabeçalho (*headers*; `.hpp`);

@@ -4,5 +4,8 @@
 // includes, libraries...
 #include <iostream>
 #include <filesystem>
+#include <fstream>
+#include <sstream>
+#include <vector>
 
 #endif // MAIN_HPP

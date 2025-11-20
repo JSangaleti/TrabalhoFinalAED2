@@ -4,30 +4,33 @@
 #include <string>
 #include <vector>
 #include <unordered_set>
+#include <fstream>
+#include <sstream>
+#include <cctype>
 
-class TextProcessor{
+class TextProcessor
+{
 public:
     // Construtor: carrega stopwords
-    TextProcessor(const std::string &stopwordsPath = 
-    "./files/stopwords.txt");
+    TextProcessor(const std::string &stopwordsPath =
+                      "./files/stopwords.txt");
 
     // Função principal: processa o texto e retorna uma lista de palavras válidas
     std::vector<std::string> processText(const std::string &text);
 
-private: 
-        std::unordered_set<std::string> stopwords;
+private:
+    std::unordered_set<std::string> stopwords;
 
-        // abre o arquivo stopwords.txt e cada palavra lida é colocada num unordered_set
-        void loadStopwords(const std::string &path);
-        
-        // remove a pontuação (substituindo por espaço) e transforma tudo em minúsculas. Sobra apenas letras e números. 
-        std::string normalize(const std::string &text);
+    // abre o arquivo stopwords.txt e cada palavra lida é colocada num unordered_set
+    void loadStopwords(const std::string &path);
 
-        // divide por espaços (usando stringstream) e retorna um vetor de palavras
-        std::vector<std::string> tokenize(const std::string &text);
+    // remove a pontuação (substituindo por espaço) e transforma tudo em minúsculas. Sobra apenas letras e números.
+    std::string normalize(const std::string &text);
 
-        // retorna se a palavra está ou não no set
-        bool isStopword(const std::string &word) const;
+    // divide por espaços (usando stringstream) e retorna um vetor de palavras
+    std::vector<std::string> tokenize(const std::string &text);
 
+    // retorna se a palavra está ou não no set
+    bool isStopword(const std::string &word) const;
 };
 #endif // TEXT_PROCESSOR_HPP

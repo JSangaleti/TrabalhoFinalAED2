@@ -1,5 +1,5 @@
 #include "../include/main.hpp"
-//#include "../include/index.hpp"
+// #include "../include/index.hpp"
 #include "../include/text_processor.hpp"
 
 using namespace std;
@@ -8,6 +8,12 @@ namespace fs = filesystem;
 
 string ReadFile(const fs::path &file_path)
 {
+    /*
+    essa função lê o conteúdo dos arquivos. ela recebe valores do tipo fs::path,
+    que é um tipo meio esquisito, mas não precisa se preocupar com isso. afinal,
+    essa função só é utilizada dentro do laço de repetição que lista recursivamente
+    os arquivos
+    */
     ifstream file((file_path));
     if (!file.is_open())
         throw runtime_error("Erro ao abrir o arquivo: " + file_path.string());
@@ -25,7 +31,8 @@ string ReadFile(const fs::path &file_path)
     return buffer.str();
 }
 
-void TestTextProcessor() {
+void TestTextProcessor()
+{
     TextProcessor tp("./files/stopwords.txt");
 
     std::string texto = "O Gato está COMENDO no telhado! E o cachorro está comendo também.";
@@ -38,12 +45,16 @@ void TestTextProcessor() {
     cout << endl;
 }
 
-
 int main(/*int argc, char const *argv[]*/)
 {
     fs::path dir_path = "./files/";
     vector<string> texts; // vetor dos textos
 
+    /*
+    entry é uma variável que recebe um ponteiro à memória dos arquivos, permitindo que os
+    manipulemos. ela tem um tipo meio estranho mesmo e, onde utilizo entry.path(), o retorno
+    é do tipo fs::path (onde fs remete ao namespace filesystem)
+    */
     for (const auto &entry : fs::recursive_directory_iterator(dir_path))
     {
         if (entry.is_regular_file() && entry.path().extension() == ".txt")
@@ -55,6 +66,7 @@ int main(/*int argc, char const *argv[]*/)
 
             !!  está sendo utilizado um vetor apenas para fins de teste !!
 
+            para ler o conteúdo do arquivo, basta utilizar ReadFile(entry.path())
             */
 
             texts.push_back(ReadFile(entry.path()));

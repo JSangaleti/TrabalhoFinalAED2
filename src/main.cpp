@@ -1,4 +1,6 @@
 #include "../include/main.hpp"
+//#include "../include/index.hpp"
+#include "../include/text_processor.hpp"
 
 using namespace std;
 
@@ -22,6 +24,20 @@ string ReadFile(const fs::path &file_path)
 
     return buffer.str();
 }
+
+void TestTextProcessor() {
+    TextProcessor tp("./files/stopwords.txt");
+
+    std::string texto = "O Gato está COMENDO no telhado! E o cachorro está comendo também.";
+
+    auto palavras = tp.processText(texto);
+
+    cout << "Palavras processadas:" << endl;
+    for (const auto &p : palavras)
+        cout << p << " ";
+    cout << endl;
+}
+
 
 int main(/*int argc, char const *argv[]*/)
 {
@@ -50,6 +66,6 @@ int main(/*int argc, char const *argv[]*/)
     {
         cout << texts[i] << endl;
     }
-
+    TestTextProcessor();
     return 0;
 }

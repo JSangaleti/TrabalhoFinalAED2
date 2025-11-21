@@ -38,3 +38,8 @@ std::string Index::getFileName(int id) const
         return "";
     return idToFileName[id];
 }
+
+const std::unordered_map<std::string, std::vector<int>>& Index::getInvertedIndex() const {
+    return invertedIndex;
+}
+

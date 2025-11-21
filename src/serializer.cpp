@@ -71,9 +71,9 @@ void Serializer::load(Index &index, const std::string &filename) {
         throw std::runtime_error("Erro ao abrir arquivo para carregar.");
 
     // limpa tudo antes 
-    index.getInvertedIndexRef().clear();
-    index.getFileNameToIdRef().clear();
-    index.getIdToFileNameRef().clear();
+    index.invertedIndex.clear();
+    index.fileNameToId.clear();
+    index.idToFileName.clear();
 
     // 1) CARREGAR idToFileName 
     size_t nameCount;
@@ -99,15 +99,17 @@ void Serializer::load(Index &index, const std::string &filename) {
     size_t invSize;
     in.read(reinterpret_cast<char*>(&invSize), sizeof(size_t));
 
-    for (size_t i = 0; i < invSize; i++) {
+    for (size_t i = 0; i < invSize; ++i) {
         std::string word = readString(in);
 
         size_t vecSize;
         in.read(reinterpret_cast<char*>(&vecSize), sizeof(size_t));
 
         std::vector<int> docs(vecSize);
-        in.read(reinterpret_cast<char*>(docs.data()), vecSize * sizeof(int));
+        for (size_t j = 0; j < vecSize; ++j) {
+            in.read(reinterpret_cast<char*>(&docs[j]), sizeof(int));
+        }
 
-        index.getInvertedIndexRef()[word] = docs;
+        index.invertedIndex[word] = docs;
     }
 }

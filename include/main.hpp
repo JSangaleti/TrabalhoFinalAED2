@@ -2,10 +2,6 @@
 #define MAIN_HPP
 
 // includes, libraries...
-#include <iostream>
-#include <filesystem>
-#include <fstream>
-#include <sstream>
-#include <vector>
+#include "../include/command_line_interface.hpp"
 
 #endif // MAIN_HPP

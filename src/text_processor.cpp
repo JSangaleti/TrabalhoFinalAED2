@@ -40,10 +40,10 @@ std::string TextProcessor::normalize(const std::string &text)
         // UTF-8 multibyte (acentos e cedilha)
         else
         {
-            // Copia o byte atual e o próximo (UTF-8 até 2 bytes)
-            // sem alterar. Mantemos o caractere.
+            // copia o byte atual e o próximo (UTF-8 até 2 bytes)
+            // sem alterar. mantemos o caractere
 
-            // Detectar sequência UTF-8 (simplificada)
+            // detectar sequência UTF-8 (simplificada)
             if ((c & 0xE0) == 0xC0)
             {
                 // caractere de 2 bytes (á, é, ó, ã, ç...)
@@ -61,7 +61,7 @@ std::string TextProcessor::normalize(const std::string &text)
             }
             else
             {
-                // Outros casos (3 e 4 bytes)
+                // outros casos (3 e 4 bytes)
                 // copiar byte e avançar 1 (simples e seguro)
                 result += text[i];
                 i++;

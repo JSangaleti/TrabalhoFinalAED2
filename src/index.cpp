@@ -6,7 +6,7 @@ void Index::addWord(const std::string &word, int documentId)
 {
     auto &list = invertedIndex[word];
 
-    // Garante que não haja IDs repetidos
+    // garante que não haja IDs repetidos
     if (std::find(list.begin(), list.end(), documentId) == list.end())
     {                               // se não encontrou...
         list.push_back(documentId); // adiciona ao final do vetor
@@ -39,6 +39,7 @@ std::string Index::getFileName(int id) const
     return idToFileName[id];
 }
 
-const std::unordered_map<std::string, std::vector<int>>& Index::getInvertedIndex() const {
+const std::unordered_map<std::string, std::vector<int>> &Index::getInvertedIndex() const
+{
     return invertedIndex;
 }

@@ -11,11 +11,10 @@
 class TextProcessor
 {
 public:
-    // Construtor: carrega stopwords
     TextProcessor(const std::string &stopwordsPath =
                       "./files/stopwords.txt");
 
-    // Função principal: processa o texto e retorna uma lista de palavras válidas
+    // processa o texto e retorna uma lista de palavras válidas
     std::vector<std::string> processText(const std::string &text);
 
 private:

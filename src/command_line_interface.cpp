@@ -2,9 +2,6 @@
 
 namespace fs = std::filesystem;
 
-// ======================================================================
-// Construtor: guarda os argumentos recebidos
-// ======================================================================
 CommandLineInterface::CommandLineInterface(int argc, char **argv)
 {
     for (int i = 0; i < argc; i++)
@@ -13,18 +10,11 @@ CommandLineInterface::CommandLineInterface(int argc, char **argv)
     }
 }
 
-// ======================================================================
-// Verifica se uma flag foi fornecida
-// ======================================================================
 bool CommandLineInterface::hasFlag(const std::string &flag) const
 {
     return std::find(args.begin(), args.end(), flag) != args.end();
 }
 
-// ======================================================================
-// Retorna o argumento que vem após a flag
-// Ex: --index ./files
-// ======================================================================
 std::string CommandLineInterface::getArgumentAfter(const std::string &flag) const
 {
     auto it = std::find(args.begin(), args.end(), flag);
@@ -33,10 +23,6 @@ std::string CommandLineInterface::getArgumentAfter(const std::string &flag) cons
     return "";
 }
 
-// ======================================================================
-// Coleta várias palavras após --search
-// Ex: --search gato cachorro telhado
-// ======================================================================
 std::vector<std::string> CommandLineInterface::getWordsAfter(const std::string &flag) const
 {
     std::vector<std::string> words;
@@ -53,9 +39,6 @@ std::vector<std::string> CommandLineInterface::getWordsAfter(const std::string &
     return words;
 }
 
-// ======================================================================
-// Mostra ajuda
-// ======================================================================
 void CommandLineInterface::showHelp() const
 {
     std::cout << "\nUso do programa:\n\n"
@@ -66,22 +49,16 @@ void CommandLineInterface::showHelp() const
               << "  ./programa --load ./data/index.bin --search gato cachorro\n\n";
 }
 
-// ======================================================================
-// núcleo da CLI: decide o que fazer
-// ======================================================================
 void CommandLineInterface::run()
 {
 
-    // Exibir ajuda
+    // exibir ajuda
     if (hasFlag("--help") && args.size() == 1)
     {
         showHelp();
         return;
     }
 
-    // --------------------------------------------------------------
-    // Caso 1: indexar diretório e salvar
-    // --------------------------------------------------------------
     if (hasFlag("--index"))
     {
         std::string dir = getArgumentAfter("--index");
@@ -102,9 +79,6 @@ void CommandLineInterface::run()
         return;
     }
 
-    // --------------------------------------------------------------
-    // Caso 2: carregar índice e fazer busca
-    // --------------------------------------------------------------
     if (hasFlag("--load") && hasFlag("--search"))
     {
         std::string file = getArgumentAfter("--load");
@@ -129,6 +103,6 @@ void CommandLineInterface::run()
         return;
     }
 
-    // Se nada bateu:
+    // se não der em nenhuma opção
     showHelp();
 }

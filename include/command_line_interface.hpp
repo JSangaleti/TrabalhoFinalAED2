@@ -14,13 +14,13 @@ class CommandLineInterface
 public:
     CommandLineInterface(int argc, char **argv);
 
-    // Executa a ação solicitada
+    // executa a ação solicitada
     void run();
 
 private:
     std::vector<std::string> args;
 
-    // Helpers
+    // helpers
     bool hasFlag(const std::string &flag) const;
     std::string getArgumentAfter(const std::string &flag) const;
     std::vector<std::string> getWordsAfter(const std::string &flag) const;
@@ -28,4 +28,4 @@ private:
     void showHelp() const;
 };
 
-#endif
+#endif // COMMAND_LINE_INTERFACE_HPP
